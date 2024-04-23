@@ -27,9 +27,8 @@ contract HotelRoom {
     }
 
     function bookRoom () public payable onlyWhileVacant costs(2 ether) {
-
-        (bool sent, bytes memory data) = owner.call{value: msg.value}("");
-        require(true);
+        (bool sent,) = owner.call{value: msg.value}("");
+        require(sent,"Transfer failed!");
 
         currentStatus = roomStatus.Occupied;
         emit Occupy(msg.sender,msg.value);
